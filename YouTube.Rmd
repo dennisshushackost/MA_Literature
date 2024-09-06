@@ -38,9 +38,8 @@ We want to first understand how to get from data to knowledge and how we can rep
 
 **What is Knowledge?**
 
-Knowledge is an appropriate collection of information, such that its intended use is useful.
-
-\
+Knowledge is an appropriate *collection of information*, such that its intended use is useful. Wisdom is the ability to make sound judgement and decisions (This comes from the accumulation of knowledge). Understanding is a continuum that leads from data, through information and knowledge and ultimately to wisdom. \
+![](images/clipboard-3974074964.png){width="575"}\
 \
 
 **\
