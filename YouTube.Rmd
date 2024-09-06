@@ -41,8 +41,19 @@ We want to first understand how to get from data to knowledge and how we can rep
 Knowledge is an appropriate *collection of information*, such that its intended use is useful. Wisdom is the ability to make sound judgement and decisions (This comes from the accumulation of knowledge). Understanding is a continuum that leads from data, through information and knowledge and ultimately to wisdom. \
 ![](images/clipboard-3974074964.png){width="396"}
 
-We can understand knowledge the following way. We can see, that there are **truths** in the world. What we believe to be the truth are called **believes.** Some of our believes are true and some are not. \
-\
+We can understand knowledge the following way. We can see, that there are **truths** in the world. What we believe to be the truth are called **believes.** Some of our believes are true and some are not. The ones which are, are called **justified believes.**
+
+> "Knowledge is a justified subset of all true believes"  - Stanford Encyclopedia\
+> "People cannot share knowledge if they don't speak a common language" - Daveport & Prusak
+
+**Mathematical\
+**For a proposition $p$ to be considered knowledge, the following must apply:
+
+1.  **Truth** ($p$ is true): For someone to know something, the proposition $p$ must be true. If $p$ is false it cannot be known; Only truths can be known.
+2.  **Relives (**$S$ believes that $p$): The person $S$ must believe the proposition $p$. Knowledge cannot exist without believe.
+3.  **Justification (**$S$ is justified in believing that $p$): The believe in $p$ must be justified. This means there must be some form of evidence or rational basis for $S$ to hold the believe that $p$ is true.
+
+![](images/clipboard-2979063884.png){width="397"}
 
 **\
 \
