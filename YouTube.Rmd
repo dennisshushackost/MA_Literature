@@ -22,4 +22,13 @@ ul li {
 ```
 ## YouTube Video Summary
 
-This is a summary of the playlist from the YouTube Series
+This is a summary of the playlist from the YouTube Series [YouTube](https://www.youtube.com/watch?v=CiU1sMbL3k4&list=PLNXdQl4kBgzubTOfY5cbtxZCgg9UTe-uF).
+
+### Lecture 1: Knowledge Representation with Graphs
+
+We want to first understand how to get from data to knowledge and how we can represent this knowledge. It is important to note, that the same word can have several meanings. I.e., the number 42:
+
+-   It can be a **code,** a **quantity** or even a **weight** $\rightarrow$ We need more information.
+
+**What is data?\
+**Data is raw. It simply exists and has no significance beyond its existence (in and of itself). It can exist in any form, usable or not. If we want to use this data we need information.
