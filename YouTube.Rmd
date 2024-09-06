@@ -3,10 +3,10 @@ title: "Video Summary"
 author: "Dennis Shushack"
 date: "2024-09-05"
 output:
+  pdf_document: default
   word_document: default
   html_document:
     css: styles.css
-  pdf_document: default
 ---
 
 ```{=html}
@@ -31,4 +31,18 @@ We want to first understand how to get from data to knowledge and how we can rep
 -   It can be a **code,** a **quantity** or even a **weight** $\rightarrow$ We need more information.
 
 **What is data?\
-**Data is raw. It simply exists and has no significance beyond its existence (in and of itself). It can exist in any form, usable or not. If we want to use this data we need information.
+**Data is raw. It simply exists and has no significance beyond its existence (in and of itself). It can exist in any form, usable or not. If we want to use it we need information.
+
+**What is Information?\
+**Information is data that has been given meaning by the way of *relational connection*. This "meaning" can be useful, but does not have to be. Information is contained in descriptions. Also, information often answers questions, that begin with a w-word: what, who, when and where.
+
+**What is Knowledge?**
+
+Knowledge is an appropriate collection of information, such that its intended use is useful.
+
+\
+\
+
+**\
+\
+**
