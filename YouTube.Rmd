@@ -3,8 +3,8 @@ title: "Video Summary"
 author: "Dennis Shushack"
 date: "2024-09-05"
 output:
-  pdf_document: default
   word_document: default
+  pdf_document: default
   html_document:
     css: styles.css
 ---
@@ -39,7 +39,9 @@ We want to first understand how to get from data to knowledge and how we can rep
 **What is Knowledge?**
 
 Knowledge is an appropriate *collection of information*, such that its intended use is useful. Wisdom is the ability to make sound judgement and decisions (This comes from the accumulation of knowledge). Understanding is a continuum that leads from data, through information and knowledge and ultimately to wisdom. \
-![](images/clipboard-3974074964.png){width="575"}\
+![](images/clipboard-3974074964.png){width="396"}
+
+We can understand knowledge the following way. We can see, that there are **truths** in the world. What we believe to be the truth are called **believes.** Some of our believes are true and some are not. \
 \
 
 **\
