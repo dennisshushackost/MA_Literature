@@ -63,4 +63,16 @@ We can understand knowledge the following way. We can see, that there are **trut
 4.  **Thesauri:** show the associations between concepts, like synonyms and antonyms.
 5.  **Ontologies:** go a step further by defining not just the relationships but the rules and constraints that govern these relationships. I.e., in biology: "Mammal", "Bird", "Animal", Relationships: "A bird is a type of Animal" Rules: "Only birds have feathers"
 
-### **Video 2:   **
+### Video 2: Knowledge and how to represent it
+
+It is very important to find the correct **context** of a word. The context (information) gives the meaning to words.
+
+**Natural Language Representation\
+**Natural language can be used to represent knowledge. Language is a system of conventional *spoken, manual, or written symbols* that combine to convey meaning. One of the most important aspects of language is to **communication.** The diagram shows the communication (air = communication channel, if we use our voice). And the ear is the receiver. There are however some problems:
+
+1.  Noise & Information loss: I.e., if we are in a very crowded room.
+2.  Encoding/Decoding: Can I properly phrase what I want to say in words and does the Receiver properly understand the meaning of my words.
+
+Generally two problems arise in natural language: 1) Ambiguity (one expression stands for different concepts) and paraphrasing (Conveying the same concept in different words).
+
+![](images/clipboard-2799712602.png){width="530"}
