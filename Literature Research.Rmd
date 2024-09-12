@@ -1,0 +1,60 @@
+---
+title: "Literature Research"
+author: "Dennis Shushack"
+output:
+  pdf_document: default
+  word_document: default
+  html_document:
+    css: styles.css
+---
+
+```{=html}
+<style>
+ul {
+  padding-left: 20px; /* Adjust this value to change the left padding */
+}
+
+ul li {
+  margin-bottom: 5px; /* Adjust this value to change the space between list items */
+}
+</style>
+```
+## Literature Research on Knowledge Graphs & LLM
+
+### GraphRAG by Microsoft
+
+Sophisticated system designed by Microsoft research for very large datasets. Transforms raw data (unstructured) into structured and semi-structured hierarchies and communities.
+
+**Traditional Graph Systems**
+
+Normal RAG suffers from:
+
+-   Contextual depth
+-   Scalability in evolving datasets.
+
+We can incorporate GraphRAG, when we want the LLM to provide answers that reflect deeper links and relationships within the data. This is useful if we want to handle large and evolving datasets efficiently. The secret sauce of GraphRAG is **community construction:**
+
+1.  **Entity Detection**: GraphRAG scans the dataset to identify and categorize entities.
+2.  **Relationship Mapping:** Examine the connections between these entities, mapping out the relationships that bind them.
+3.  **Community Clustering:** Group these entities into communities, that represent closely knit clusters of related information. i.e., a group of companies working in a certain space, etc.
+
+**The indexing Pipeline:** e2e Knowledge Graph creation pipeline. ([Indexing Dataflow](https://microsoft.github.io/graphrag/posts/index/1-default_dataflow/), [Medium](https://thecagedai.medium.com/graphrag-redefining-knowledge-extraction-97fb3d8f9bec))
+
+### **Phase 1: Compose Text Units**
+
+In a first step some inital processing happens for the raw input data. A Text Unit is a chunk of text that is used for the graph extraction and is also employed as a source-reference. The size of the text chunk can be defined by the users (default 300 tokens). This chunk size determines the granularity of the Text Units. This helps capture enough detail inside the text without loosing the context. What is the impact of Chunk Size:
+
+-   **Larger Chunks:**
+    -   *Faster Processing Times:* number of text segments to process is reduced. Less time is needed to retrieve and process the information from multiple chunks.
+    -   *Context Preservation:* Larger chunks retain more context, which can beneficial for tasks that require a broader range of context.
+    -   *Potential loss of granularity:* Larger chunks keep more context, however might dilute the specific focus on fine-grained details i.e., subtle relationships. Also these provide less meaningful reference texts.
+-   **Smaller Chunks:**
+    -   *Improved Data Completeness:* Smaller chunks provide finer granularity, allowing the system to focus on more specific pieces of information.
+    -   *Detailed and Focused References:* Because smaller chunks concentrate on smaller sections of text, the extracted information is often more precise and relevant. This is especially important for entity extraction.
+    -   *Increased processing:* More chunks lead to more retrieval and processing operations (time & resources).
+
+**Grouping Configuration**
+
+Next, the GraphRag system aligns chunks to the document boundaries. As such, we end up with a **1-to-Many** chunk-document relationship. We thus have one chunk per document. This preserves the document's contextual integrity. For shorter documents we can adjust this to **Many-to-Many.**
+
+### Phase 2: Graph Extraction
