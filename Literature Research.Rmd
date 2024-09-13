@@ -42,7 +42,7 @@ We can incorporate GraphRAG, when we want the LLM to provide answers that reflec
 
 ### **Phase 1: Compose Text Units**
 
-In a first step some inital processing happens for the raw input data. A Text Unit is a chunk of text that is used for the graph extraction and is also employed as a source-reference. The size of the text chunk can be defined by the users (default 300 tokens). This chunk size determines the granularity of the Text Units. This helps capture enough detail inside the text without loosing the context. What is the impact of Chunk Size:
+In a first step some initial processing happens for the raw input data. A Text Unit is a chunk of text that is used for the graph extraction and is also employed as a source-reference. The size of the text chunk can be defined by the users (default 300 tokens). This chunk size determines the granularity of the Text Units. This helps capture enough detail inside the text without loosing the context. What is the impact of Chunk Size:
 
 -   **Larger Chunks:**
     -   *Faster Processing Times:* number of text segments to process is reduced. Less time is needed to retrieve and process the information from multiple chunks.
@@ -57,4 +57,30 @@ In a first step some inital processing happens for the raw input data. A Text Un
 
 Next, the GraphRag system aligns chunks to the document boundaries. As such, we end up with a **1-to-Many** chunk-document relationship. We thus have one chunk per document. This preserves the document's contextual integrity. For shorter documents we can adjust this to **Many-to-Many.**
 
+Each chunk is then **text embedded** (an embedding is created for each of our text chunks).
+
+The output for our document is as follows:
+
+1.  chunk: Chunk of the text in a specific size i.e., 200 tokens
+2.  chunk_id: Id of the chunk
+3.  document ids: [list of corresponding document ids.
+4.  n_tokens: the token size
+
 ### Phase 2: Graph Extraction
+
+***Transforming TextUnits into a Structured Knowledge Graph\
+***This transforms the raw TextUnits into a graph that we can query. In this phase we extract the primitives from the textunits:
+
+-   **Entities:** Represent people, places, events, or some other entity-model provided.
+-   **Relationships:** A relation between two entities. These are generated from the *covariates*.
+
+These are extracted using LLMs. Each textunit is processed in order to extract the entities & relationships out of the raw text. We end up with a sub graph for each textunit:
+
+-   TextUnit containing a list of e**ntities** with a *name*, *type*, and *description*
+-   list of **relationships** with a *source*, *target*, and *description*.
+
+The sub-graphs are then merged together. Entities with the same *name* and *type* are merged by creating an array of their descriptions (Entity Resolution). The same happens for the relationships. Relationships with the same source and target are merged by creating an array of their descriptions.
+
+The next step is entity & Relationship Summarization. We have a graph with entities & relationships, each containing a list of descriptions. We now summarize these lists into a single description per entity & relationship. This is achieved by prompting the LLM to create a summary of the descriptions. In the end each entity and relationship contains a single description.
+
+Claims can be extracted as well but are left out by default.
