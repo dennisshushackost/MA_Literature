@@ -24,6 +24,15 @@ RAG systems primarily rely on similarity search for retrieval. This approach, ho
 
 **Knowledge Graph:**
 
--   Knowledge Triplets: (entity) - [relationship] - (entity)
+-   Knowledge Triplets: (entity) - [relationship] - (entity) (A basic unit of information in the graph)
+    -   Triplet $t = (e,r,e')$, where $e$ is the entity, $r$ = the predicate relationship and $e'$ is the object entity.
+    -   A Graph $G=\left\{t=\left(e, r, e^{\prime}\right) \text {, where } e, e^{\prime} \in E, r \in R\right\}$
+
+**Knowledge Graph Question Answering (KGQA)\
+**The idea of KGQA is to respond to questions with information from the KG. For complex queries, this requires the infromation retrieval (IR) of multiple triplets.
 
 Summary of KG-pipeline: Extract triplets from raw text, store them in a KG database. Use this KG as knowledge for the RAG system.
+
+**Core Components of KG-RAG:**
+
+1.  Knowledge Graph Construction: This includes named entity recognition (NER) & Relationship Extraction (RE) to extract the needed triplets.
