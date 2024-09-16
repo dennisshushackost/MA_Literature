@@ -83,4 +83,42 @@ The sub-graphs are then merged together. Entities with the same *name* and *type
 
 The next step is entity & Relationship Summarization. We have a graph with entities & relationships, each containing a list of descriptions. We now summarize these lists into a single description per entity & relationship. This is achieved by prompting the LLM to create a summary of the descriptions. In the end each entity and relationship contains a single description.
 
-Claims can be extracted as well but are left out by default.
+Claims can be extracted as well but are left out by default.\
+This is an Entity:
+
+![](images/clipboard-1664641416.png)
+
+![](images/clipboard-905527393.png)
+
+**Relationship:**
+
+![](images/clipboard-1991018173.png)
+
+### Phase 3: Graph Augmentation
+
+This part is about understanding the community structure of our graph and then augment it. This step is performed in two steps:
+
+1.  **Community Detection**
+    -   Detecting clusters/groups of nodes (entities) that are densely connected together (more than the rest of the graph). These communities are a set of nodes that have something in common (shared attributes/roles). This allows for later summarization of the graph at later stages at different granularities.
+
+    -   **Method:**
+
+        -   Using the Leiden Algorithm for community detection, a hierarchy of entity communities is created. This method works by iteratively refining communities to optimize a measure called **modularity**.
+
+            -   *Local Moving Nodes*: Nodes are moved to different communities to increase the quality of partitioning based on granularity.
+
+            -   *Refinement of Partitions*: The partitions are refined to ensure that the communities are well-connected internally.
+
+            -   *Aggregation of the Network:* Communities are aggregated into single nodes, and the process is repeated.
+
+        -   This entire process is done iteratively. Once a set of communities is identified, the algorithm is applied again within each community to find sub-communities. This continues until a **community-size threshold** is reached. For example, if we set the threshold at 5 nodes, the recursive clustering stops when all sub-communities have at least 5 nodes.
+2.  **Graph Embedding:**
+    -   Transforms a graph into a geometric space. A vector representation is created of the graph is created using the node2vec algorithm. This allows to understand the implicit structure of the graph. We can see the contextual connections between different nodes.
+
+**Graph Table Emission:** We end up with **Entities** and **Relationships** tables after their text fields are text-embedded.
+
+### Phase 4: Community Summarization
+
+We have a functional graph of entities and relationships, a hierarchy of communities for the entities and the node2vec embedding. The goal of this phase is to create a report for each community. I.e., if A is the top level community it will give us a report about the entire graph, otherwise we get one about a local cluster.
+
+1.  Generate community reports: Done by LLMs (gives us a scoped understanding of the graph). These reports contain an overview and reference the key entities/relationships within the community sub.-structure.
