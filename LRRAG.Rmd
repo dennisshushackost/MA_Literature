@@ -1,0 +1,17 @@
+---
+title: "Literature Review Graph based RAG"
+output: pdf_document
+date: "2024-09-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Literature Review Graph-Based RAG
+
+This section summarizes different research papers which employ Graph-Based Retrieval-Augmented Generation (RAG) and normal RAG approaches.
+
+### Paper 1: [G-Retriver](https://arxiv.org/pdf/2402.07630)
+
+The following paper discusses the implementation of a question-answering RAG framework targeted towards graph data.
