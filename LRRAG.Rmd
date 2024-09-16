@@ -29,9 +29,18 @@ RAG systems primarily rely on similarity search for retrieval. This approach, ho
     -   A Graph $G=\left\{t=\left(e, r, e^{\prime}\right) \text {, where } e, e^{\prime} \in E, r \in R\right\}$
 
 **Knowledge Graph Question Answering (KGQA)\
-**The idea of KGQA is to respond to questions with information from the KG. For complex queries, this requires the infromation retrieval (IR) of multiple triplets.
+**The idea of KGQA is to respond to questions with information from the KG. For complex queries, this requires the infromation retrieval (IR) of multiple triplets. We can use a multi-hop traversal path: $w_z=e_0 \xrightarrow{r_1} e_1 \xrightarrow{r_2^1} \ldots \xrightarrow{r_l} e_l$., which connects a series of entities via relationships. Given a natural question $q$ and a KG $G$ a function $f$ should predict an answer $a \in A_q$ based on knowledge from $G$ . The predicted answer $a^*$ is computed by **maximizing** the probability of possible answers across all relevant paths $w_z$. Formally:
 
-Summary of KG-pipeline: Extract triplets from raw text, store them in a KG database. Use this KG as knowledge for the RAG system.
+$a^*=f(q, G)=\underset{a \in A}{\arg \max } \sum_z P\left(w_z \mid q, G\right) \cdot P\left(a \mid w_z\right)$
+
+where $P\left(w_z \mid q, G\right)$ represents the model's ability to identify the most relevant paths $w_z$ given the question $q$ and the KG $G$, and $P\left(a \mid w_z\right)$ denotes the probability of generating the answer $a$ based on the path $w_z$.
+
+**Few-Shot Learning:\
+**Few Shot learning is used to help the LLM extract the triplets from the text chunks. In this approach examples are provided to the LLM to help the model. Given a text chunk $T$ the LM must identify the different triples $t=\left(e, r, e^{\prime}\right)$: $T \xrightarrow{L M}\left\{t_i\right\}_{i=1}^n$
+
+**Retrieval:**
+
+Given a question $q$ and a KG $G$ the retrieval problem is a search problem, where the objective is to find paths $w_z$ within the graph $G$.
 
 **Core Components of KG-RAG:**
 
