@@ -49,6 +49,29 @@ The idea is to maximize tge conditional probability $P\left(w_z \mid q, G\right)
 **Answer Generation: \
 **Takes the question and extracted path information to get the most logical answer from the LM.
 
-**Core Components of KG-RAG:**
+**Triple Hypernode\
+**Extend the standard triple representation to allow for more intricate multi-layered relationships. These hypernodes contain nested triples and allow for nesting relationships within relationships.
 
-1.  Knowledge Graph Construction: This includes named entity recognition (NER) & Relationship Extraction (RE) to extract the needed triplets.
+![](images/clipboard-1405002354.png)
+
+**Chain of Explorations (CoE):**
+
+COE is the retrieval algorithm employed by the paper. It is responsible for locating and extracting the most relevant paths within the KG. The idea is to retrieve sub-graphs or paths, which contain the necessary information. It traverses through nodes and edges relevant to the query $q$.
+
+1.  **Exploration Plan Generation:**
+    -   The CoE process begins with an **exploration plan,** which is the sequence of steps that defines how to navigate the KG. This plan is generated based on $G$ and $q$.
+
+    -   To create this plan, the system uses a few-short learning prompt along with an LLM. This helps in defining logical steps for traversing the KG to retrieve relevant information, related to the query.
+2.  **Starting the Exploration**
+    -   The exploration starts by identifying the **initial set of nodes in** the KG, most relevant to the query. I.e., "Which is the former husband of Elisabeth Taylor died in Zurich. ", the starting node could be Elisabeth Taylor.
+
+    -   The initial node candidates are identified using vector similarity search. The candidates are thus transformed into vectors and then a similarity search is done on the KG, in order to compare the two. Cypher language is used in order to do so.
+3.  **Sequential KG Lookups:**
+    -   CoE performs a sequential lookup, to explore connected nodes and relationships. At each step:
+
+        -   **Node Exploration:** The algorithm looks for nodes (entities) that are directly connected to the current node and are relevant to the query. I.e. is married to, could indicate the husband.
+
+        -   **Relationship Explorer:** It examines the possible relationships (edges) between the nodes. I.e. After detecting the Husbands name we may use the relationship "died in" to identify the place of death.
+
+        -   **Filtering & Ranking Nodes/Guided Relationship Exploration** is done using the LLM.
+4.  
