@@ -40,7 +40,14 @@ where $P\left(w_z \mid q, G\right)$ represents the model's ability to identify t
 
 **Retrieval:**
 
-Given a question $q$ and a KG $G$ the retrieval problem is a search problem, where the objective is to find paths $w_z$ within the graph $G$.
+Given a question $q$ and a KG $G$ the retrieval problem is a search problem, where the objective is to find paths $w_z$ within the graph $G$ that connects the relevant entities through relationships that are appropriate to the question:
+
+$\operatorname{IR}=\underset{w_z}{\arg \max } P\left(w_z \mid q, G\right)$
+
+The idea is to maximize tge conditional probability $P\left(w_z \mid q, G\right)$, where $w_z$ represents a path in $G$ that is most likely to answer the query $q$.
+
+**Answer Generation: \
+**Takes the question and extracted path information to get the most logical answer from the LM.
 
 **Core Components of KG-RAG:**
 
